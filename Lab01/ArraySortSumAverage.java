@@ -12,7 +12,7 @@ public class ArraySortSumAverage {
         double sum = 0;
 
         for (int i = 0; i < n; i++) {
-            System.out.print("Enter element [" + i + "]: ");
+            System.out.print("Enter element "+ i +" : ");
             arr[i] = scanner.nextDouble();
             sum += arr[i];
         }
@@ -23,7 +23,6 @@ public class ArraySortSumAverage {
         System.out.println("Sorted array: " + Arrays.toString(arr));
         System.out.println("Sum = " + sum);
         System.out.println("Average = " + average);
-
         scanner.close();
     }
 }
