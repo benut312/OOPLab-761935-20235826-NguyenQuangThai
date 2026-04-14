@@ -1,0 +1,15 @@
+1. No. Java does not allow it because both constructors have the same parameter type, which is String.
+
+2. I prefer varargs because it is more convenient. We can pass many DVDs directly without creating an array first. But varargs and array cannot be used together with the same method name because they are treated the same in Java.
+
+3. Java is pass by value.
+
+4. After calling swap(jungleDVD, cinderellaDVD), the titles do not change because only the copied references are swapped inside the method, not the original objects.
+
+5. After calling changeTitle(jungleDVD, cinderellaDVD.getTitle()), the title of jungleDVD changes because the method changes the actual object through its reference.
+
+6. Accessor methods should be used to control access to private attributes. Getters are usually needed, but setters should only be used when the program really needs to modify the data.
+
+7. The main OOP principles used in this lab are encapsulation, abstraction, and polymorphism.
+
+8. nbDigitalVideoDiscs is a class variable because it belongs to the whole class. Other attributes like id, title, category, director, length, and cost are instance variables because they belong to each object.
