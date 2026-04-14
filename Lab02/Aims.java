@@ -1,4 +1,40 @@
-
 public class Aims {
+    public static void main(String[] args) {
+        Cart anOrder = new Cart();
 
+        DigitalVideoDisc dvd1 = new DigitalVideoDisc(
+                "The Lion King",
+                "Animation",
+                "Roger Allers",
+                87,
+                19.95f
+        );
+        anOrder.addDigitalVideoDisc(dvd1);
+
+        DigitalVideoDisc dvd2 = new DigitalVideoDisc(
+                "Star Wars",
+                "Science Fiction",
+                "George Lucas",
+                87,
+                24.95f
+        );
+        anOrder.addDigitalVideoDisc(dvd2);
+
+        DigitalVideoDisc dvd3 = new DigitalVideoDisc(
+                "Aladin",
+                "Animation",
+                "John Musker",
+                90,
+                18.99f
+        );
+        anOrder.addDigitalVideoDisc(dvd3);
+
+        System.out.println("Items in cart:");
+        anOrder.print();
+
+        System.out.println();
+        System.out.println("Remove one disc:");
+        anOrder.removeDigitalVideoDisc(dvd2);
+        anOrder.print();
+    }
 }
