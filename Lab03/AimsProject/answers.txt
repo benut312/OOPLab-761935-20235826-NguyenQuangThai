@@ -1,0 +1,23 @@
+Lab 03 answers
+
+1. The return type of toString() is String because it overrides Object.toString().
+
+2. Debugging shortcuts in Eclipse:
+- Step Into: F5
+- Step Over: F6
+- Step Return: F7
+- Resume: F8
+
+3. If equals(Object obj) receives an object that is not a Media or Track, the method should return false. Checking instanceof before casting avoids ClassCastException.
+
+4. Polymorphism lets code work with a common parent type such as Media while Java dispatches the correct behavior at runtime, for example Book.toString(), DigitalVideoDisc.toString(), or CompactDisc.toString().
+
+5. Inheritance helps polymorphism because subclasses inherit a common type and can override behavior from that type. Code can store Book, DVD, and CD in ArrayList<Media> and call shared methods through Media references.
+
+6. Inheritance is the is-a relationship between classes. Polymorphism is the ability of the same call to behave differently depending on the runtime object.
+
+7. Comparable alternative:
+- Media should implement Comparable<Media> if there is one natural ordering for all media.
+- compareTo() could compare title ascending, then cost descending.
+- Comparable alone cannot express two independent orderings at the same time. Comparator is better for multiple sort rules.
+- If DVDs need a different ordering rule from other media, create a dedicated Comparator for DVD or a Comparator<Media> that checks instanceof DigitalVideoDisc and applies the DVD-specific rule.
