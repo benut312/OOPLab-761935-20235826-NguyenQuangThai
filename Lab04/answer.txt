@@ -1,0 +1,28 @@
+Lab 04 - Answers
+
+1.3 Compare Swing and AWT elements
+
+1. Top-level containers:
+AWT uses Frame as the top-level container.
+Swing uses JFrame as the top-level container.
+
+2. Component names:
+AWT uses Label, TextField, Button.
+Swing uses JLabel, JTextField, JButton.
+
+3. Adding components:
+In AWT, components can be added directly to Frame.
+In Swing, components should be added to the content pane of JFrame (using getContentPane().add()).
+
+4. Event handling:
+Both AWT and Swing use listener interfaces such as ActionListener.
+The actionPerformed(ActionEvent e) method is used to handle events in both frameworks.
+
+5. Appearance:
+Swing applications may look different from AWT applications.
+Swing components are lightweight (written entirely in Java) and more flexible than AWT components which are heavyweight (rely on the native OS GUI peers).
+
+2.2.3 NumberGrid ButtonListener Logic:
+- If the pressed button is a digit ('0'-'9'), append it to the text display field.
+- If the pressed button is "DEL", remove the last digit from the display if the display is not empty.
+- If the pressed button is "C", completely clear the display.
