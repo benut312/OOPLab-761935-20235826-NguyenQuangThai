@@ -1,0 +1,22 @@
+14. 
+Q:What class should implement the Comparable interface?
+A:The Media class should implement the Comparable interface as Book and Disc classes would inherit the comparison logic for sorting by title or cost
+Q:In those classes, how should you implement the compareTo()method to reflect the ordering that
+we want?
+A:We can override the compareTo() method to compare the preferred way
+Q:Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this
+Comparable interface approach?
+A:We can implement a primary and secondary sorting rule by first comparing the title, and if they are equal, then compare by cost and vice versa
+Q:Suppose the DVDs have a different ordering rule from the other media types, that is by title, then
+decreasing length, then cost. How would you modify your code to allow this?
+A:We can override the comparator for DVD class like this
+@Override
+  public int compareTo(Media DVD1, Media DVD2) {
+    if(DVD1.getTitle().equals(DVD2.getTitle()) {
+      if(DVD1.getLength() == DVD2.getLength()){
+       return DVD1.getCost() > DVD2.getCost();
+      }
+      return DVD1.getLength() > DVD2.getLength();
+    }
+    return DVD1.getTitle() > DVD2.getTitle();
+  }
