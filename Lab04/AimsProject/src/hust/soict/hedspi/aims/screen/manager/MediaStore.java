@@ -11,10 +11,14 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import hust.soict.hedspi.aims.media.CompactDisc;
+import hust.soict.hedspi.aims.media.DigitalVideoDisc;
 import hust.soict.hedspi.aims.media.Media;
 import hust.soict.hedspi.aims.media.Playable;
+import hust.soict.hedspi.aims.media.Track;
 
 public class MediaStore extends JPanel {
     private Media media;
@@ -39,16 +43,17 @@ public class MediaStore extends JPanel {
                 JDialog dialog = new JDialog();
                 dialog.setTitle("Play Media");
                 dialog.setSize(400, 200);
-                dialog.setLocationRelativeTo(null);
-                
+                dialog.setLocationRelativeTo(MediaStore.this);
+                dialog.setModal(true);
+
                 JTextArea textArea = new JTextArea();
                 textArea.setEditable(false);
-                textArea.setText("Playing: " + media.getTitle());
-                
-                dialog.add(textArea);
+                textArea.setLineWrap(true);
+                textArea.setWrapStyleWord(true);
+                textArea.setText(getPlaybackMessage());
+
+                dialog.add(new JScrollPane(textArea));
                 dialog.setVisible(true);
-                
-                ((Playable) media).play();
             });
             container.add(playButton);
         }
@@ -60,5 +65,53 @@ public class MediaStore extends JPanel {
         this.add(container);
 
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+    }
+
+    private String getPlaybackMessage() {
+        if (media instanceof DigitalVideoDisc) {
+            DigitalVideoDisc dvd = (DigitalVideoDisc) media;
+            if (dvd.getLength() <= 0) {
+                return "Cannot play DVD: " + dvd.getTitle()
+                        + System.lineSeparator()
+                        + "DVD length is non-positive.";
+            }
+            return "Playing DVD: " + dvd.getTitle()
+                    + System.lineSeparator()
+                    + "DVD length: " + dvd.getLength();
+        }
+
+        if (media instanceof CompactDisc) {
+            CompactDisc cd = (CompactDisc) media;
+            if (cd.getLength() <= 0) {
+                return "Cannot play CD: " + cd.getTitle()
+                        + System.lineSeparator()
+                        + "CD length is non-positive.";
+            }
+
+            StringBuilder builder = new StringBuilder();
+            builder.append("Playing CD: ").append(cd.getTitle())
+                    .append(System.lineSeparator())
+                    .append("CD length: ").append(cd.getLength());
+
+            for (Track track : cd.getTracks()) {
+                builder.append(System.lineSeparator())
+                        .append(System.lineSeparator())
+                        .append(formatTrackPlayback(track));
+            }
+            return builder.toString();
+        }
+
+        return "Playing: " + media.getTitle();
+    }
+
+    private String formatTrackPlayback(Track track) {
+        if (track.getLength() <= 0) {
+            return "Cannot play track: " + track.getTitle()
+                    + System.lineSeparator()
+                    + "Track length is non-positive.";
+        }
+        return "Playing track: " + track.getTitle()
+                + System.lineSeparator()
+                + "Track length: " + track.getLength();
     }
 }
